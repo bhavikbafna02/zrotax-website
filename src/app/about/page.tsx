@@ -42,21 +42,32 @@ export default function AboutPage() {
                     initial={{ opacity: 0, x: 40 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative aspect-square lg:aspect-video overflow-hidden rounded-2xl bg-muted/30 border border-border/50 shadow-xl flex items-center justify-center p-8"
+                    className="relative aspect-square lg:aspect-video flex items-center justify-center p-8"
                 >
-                    <div className="grid grid-cols-2 gap-4 w-full h-full opacity-80">
-                        <motion.div className="bg-primary/5 rounded-xl" animate={{ opacity: [0.5, 0.8, 0.5] }} transition={{ duration: 4, repeat: Infinity }} />
-                        <motion.div className="bg-primary/10 rounded-xl translate-y-8" animate={{ opacity: [0.8, 0.5, 0.8] }} transition={{ duration: 5, repeat: Infinity }} />
-                        <motion.div className="bg-primary/10 rounded-xl -translate-y-8" animate={{ opacity: [0.6, 0.9, 0.6] }} transition={{ duration: 6, repeat: Infinity }} />
-                        <motion.div className="bg-primary/5 rounded-xl" animate={{ opacity: [0.7, 0.4, 0.7] }} transition={{ duration: 4.5, repeat: Infinity }} />
-                    </div>
+                    {/* Background Cards for Depth */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-card/95 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-border text-center max-w-sm">
-                            <h3 className="text-3xl font-bold text-foreground mb-2">3+</h3>
-                            <p className="text-muted-foreground font-medium">Cities Presence</p>
-                            <div className="text-xs text-muted-foreground mt-4 flex justify-between gap-4">
-                                <span>Mumbai</span> | <span>Bangalore</span> | <span>Akola</span>
-                            </div>
+                        <div className="w-3/4 h-3/4 bg-slate-800/20 rounded-3xl transform -rotate-6 translate-y-4 blur-sm" />
+                        <div className="absolute w-3/4 h-3/4 bg-slate-800/20 rounded-3xl transform rotate-6 translate-y-4 blur-sm" />
+                    </div>
+
+                    {/* Main Card */}
+                    <div className="relative z-10 bg-[#0B1120] p-10 rounded-3xl shadow-2xl border border-slate-800 text-center w-full max-w-sm space-y-6">
+                        {/* Glow effect */}
+                        <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                        <div className="space-y-2">
+                            <h3 className="text-6xl font-bold text-white tracking-tight">3+</h3>
+                            <p className="text-lg text-slate-400 font-medium tracking-wide">Cities Presence</p>
+                        </div>
+
+                        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
+
+                        <div className="flex items-center justify-center gap-4 text-sm font-medium text-slate-300">
+                            <span>Mumbai</span>
+                            <div className="h-4 w-px bg-slate-700" />
+                            <span>Bangalore</span>
+                            <div className="h-4 w-px bg-slate-700" />
+                            <span>Akola</span>
                         </div>
                     </div>
                 </motion.div>
