@@ -11,8 +11,8 @@ export function Footer() {
                     {/* Brand & Description */}
                     <div className="space-y-4">
                         <Link href="/" className="flex items-center gap-4">
-                            <div className="relative h-16 w-16 overflow-hidden rounded-md">
-                                <Image src="/logo.png" alt="Zrotax Logo" fill className="object-cover object-top scale-125" />
+                            <div className="relative h-14 w-14 overflow-hidden rounded-md">
+                                <Image src="/logo.png" alt="Zrotax Logo" fill className="object-cover object-top" style={{ clipPath: 'inset(0 0 30% 0)' }} />
                             </div>
                             <span className="text-4xl font-bold text-foreground tracking-tight">Zrotax</span>
                         </Link>

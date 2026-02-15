@@ -53,8 +53,8 @@ export function Navbar() {
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-24 items-center justify-between">
                 <Link href="/" className="flex items-center gap-3">
-                    <div className="relative h-14 w-14 overflow-hidden rounded-md">
-                        <Image src="/logo.png" alt="Zrotax Logo" fill className="object-cover object-top scale-125" />
+                    <div className="relative h-12 w-12 overflow-hidden rounded-md">
+                        <Image src="/logo.png" alt="Zrotax Logo" fill className="object-cover object-top" style={{ clipPath: 'inset(0 0 30% 0)' }} />
                     </div>
                     <span className="text-4xl font-bold text-foreground tracking-tight">Zrotax</span>
                 </Link>
