@@ -141,19 +141,15 @@ export function Navbar() {
                     <div className="flex items-center gap-4">
                         <ModeToggle />
 
-                        {user ? (
-                            <Button asChild variant="ghost" className="font-medium">
-                                <Link href="/dashboard">Dashboard</Link>
-                            </Button>
-                        ) : (
-                            <Button asChild variant="ghost" className="font-medium">
-                                <Link href="/login">Login</Link>
-                            </Button>
-                        )}
+
                         <Button asChild variant="outline" className="hidden lg:flex">
                             <Link href="/file-itr">File ITR</Link>
                         </Button>
-                        <Link href="/contact" className="inline-flex items-center justify-center rounded-md px-4 h-9 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Consult Now</Link>
+                        {user ? (
+                            <Link href="/dashboard" className="inline-flex items-center justify-center rounded-md px-4 h-9 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Dashboard</Link>
+                        ) : (
+                            <Link href="/login" className="inline-flex items-center justify-center rounded-md px-4 h-9 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Login</Link>
+                        )}
                     </div>
                 </div>
 

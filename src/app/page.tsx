@@ -321,8 +321,8 @@ export default function Home() {
                 gradient: "from-emerald-500/10 to-teal-500/10"
               }
             ].map((feature, i) => (
-              <StaggerItem key={i}>
-                <HoverCard>
+              <StaggerItem key={i} className="h-full">
+                <HoverCard className="h-full">
                   <div className={`group p-8 rounded-2xl border border-border bg-gradient-to-br ${feature.gradient} hover:shadow-xl transition-all duration-300 space-y-4 text-left h-full`}>
                     <div className="h-12 w-12 rounded-xl flex items-center justify-center text-white shadow-md" style={{ backgroundColor: '#C6A85E' }}>
                       <feature.icon className="h-6 w-6" />
