@@ -142,9 +142,9 @@ export default function AboutPage() {
 
                 <StaggerContainer className="grid gap-8 md:grid-cols-3 justify-center" staggerDelay={0.2}>
                     {[
-                        { name: "CA Pranay Bafna", role: "Founder", desc: "Expert in RSU/ESPP & International Taxation", image: "/team/pranay.jpg" },
-                        { name: "CA Neha Bafna", role: "Co-Founder", desc: "Specialist in Corporate Compliance & GST", image: "/team/neha.jpg" },
-                        { name: "Bhavik Bafna", role: "CTO", desc: "Tech Innovation & Platform Security", image: "/team/bhavik.jpg" }
+                        { name: "CA Pranay Bafna", role: "Founder", desc: "Expert in RSU/ESPP & International Taxation", image: "/team/pranay.png" },
+                        { name: "CA Neha Bafna", role: "Co-Founder", desc: "Specialist in Corporate Compliance & GST", image: "/team/neha.png" },
+                        { name: "Bhavik Bafna", role: "CTO", desc: "Tech Innovation & Platform Security", image: "/team/bhavik.png" }
                     ].map((member, i) => (
                         <StaggerItem key={i}>
                             <HoverCard>
@@ -155,7 +155,7 @@ export default function AboutPage() {
                                             src={member.image}
                                             alt={member.name}
                                             fill
-                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                                         />
                                     </div>
                                     <div className="p-6 text-center space-y-2 relative z-20 bg-card -mt-2 mx-4 rounded-xl shadow-lg border border-border/50">
