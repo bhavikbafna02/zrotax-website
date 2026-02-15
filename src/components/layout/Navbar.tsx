@@ -17,6 +17,8 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { createClient } from "@/lib/supabase/client";
+import { User } from "@supabase/supabase-js";
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -48,6 +50,25 @@ import Image from "next/image";
 export function Navbar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = React.useState(false);
+    const [user, setUser] = React.useState<User | null>(null);
+
+    React.useEffect(() => {
+        const supabase = createClient();
+
+        // Check active session
+        supabase.auth.getUser().then(({ data: { user } }) => {
+            setUser(user);
+        });
+
+        // Listen for auth changes
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user ?? null);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -119,6 +140,16 @@ export function Navbar() {
                     </NavigationMenu>
                     <div className="flex items-center gap-4">
                         <ModeToggle />
+
+                        {user ? (
+                            <Button asChild variant="ghost" className="font-medium">
+                                <Link href="/dashboard">Dashboard</Link>
+                            </Button>
+                        ) : (
+                            <Button asChild variant="ghost" className="font-medium">
+                                <Link href="/login">Login</Link>
+                            </Button>
+                        )}
                         <Button asChild variant="outline" className="hidden lg:flex">
                             <Link href="/file-itr">File ITR</Link>
                         </Button>
@@ -163,11 +194,26 @@ export function Navbar() {
                                     <span className="text-lg font-semibold">Theme</span>
                                     <ModeToggle />
                                 </div>
-                                <Button asChild variant="outline" className="mt-4 w-full justify-start pl-4 text-lg h-auto py-2 border-none">
-                                    <Link href="/file-itr" onClick={() => setIsOpen(false)}>File ITR</Link>
-                                </Button>
-                                <Link href="/contact" onClick={() => setIsOpen(false)} className="mt-2 w-full inline-flex items-center justify-center rounded-md px-4 h-10 text-sm font-medium text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Consult Now</Link>
-                            </div>
+                                <div className="mt-4 pt-4 border-t border-border/50">
+                                    {user ? (
+                                        <Link href="/dashboard" className="text-lg font-semibold block py-2 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>
+                                            Dashboard
+                                        </Link>
+                                    ) : (
+                                        <div className="flex flex-col gap-4">
+                                            <Link href="/login" className="text-lg font-semibold block hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>
+                                                Login
+                                            </Link>
+                                            <Link href="/signup" className="text-lg font-semibold block text-primary hover:text-primary/80 transition-colors" onClick={() => setIsOpen(false)}>
+                                                Create Account
+                                            </Link>
+                                        </div>
+                                    )}
+                                    <Button asChild variant="outline" className="mt-4 w-full justify-start pl-4 text-lg h-auto py-2 border-none">
+                                        <Link href="/file-itr" onClick={() => setIsOpen(false)}>File ITR</Link>
+                                    </Button>
+                                    <Link href="/contact" onClick={() => setIsOpen(false)} className="mt-2 w-full inline-flex items-center justify-center rounded-md px-4 h-10 text-sm font-medium text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Consult Now</Link>
+                                </div>
                         </SheetContent>
                     </Sheet>
                 </div>
