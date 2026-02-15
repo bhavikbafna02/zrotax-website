@@ -59,9 +59,7 @@ export default function BusinessAdvisoryPage() {
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                         Partner with Zrotax for expert guidance on your growth journey. Let's build a roadmap to success together.
                     </p>
-                    <Button asChild size="lg" className="bg-ring text-white hover:bg-ring/90 font-semibold">
-                        <Link href="/contact">Get in Touch</Link>
-                    </Button>
+                    <Link href="/contact" className="inline-flex items-center justify-center rounded-md px-6 h-11 text-base font-semibold text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Get in Touch</Link>
                 </div>
             </div>
         </div>

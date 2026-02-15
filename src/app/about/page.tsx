@@ -30,9 +30,9 @@ export default function AboutPage() {
                         Whether it&apos;s basic tax filing or complex foreign income and equity compensation — we simplify it all with clarity, compliance, and confidence.
                     </p>
                     <div className="flex flex-col gap-4 min-[400px]:flex-row pt-4">
-                        <Button asChild size="lg" className="bg-ring text-white hover:bg-ring/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-                            <Link href="/contact">Partner With Us</Link>
-                        </Button>
+                        <Link href="/contact" className="inline-flex items-center justify-center rounded-md px-6 h-11 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" style={{ backgroundColor: '#C6A85E' }}>
+                            Partner With Us
+                        </Link>
                         <Button asChild variant="outline" size="lg" className="border-border transition-all duration-300 hover:-translate-y-0.5">
                             <Link href="/services">Explore Services</Link>
                         </Button>

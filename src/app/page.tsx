@@ -7,6 +7,12 @@ import { ScrollReveal, StaggerContainer, StaggerItem, ParallaxSection, FloatingE
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+const clientLogos = [
+  "Microsoft", "Apple", "Uber", "Zoom",
+  "Amazon", "Google", "LinkedIn", "Netflix",
+  "Oracle", "Atlassian", "Flipkart", "Airbnb",
+];
+
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -53,7 +59,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-7xl/none text-foreground"
             >
-              Expert Tax Filing for <span className="text-ring">RSU & ESPP</span>
+              Expert Tax Filing for <span className="text-ring">RSU &amp; ESPP</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -61,7 +67,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
             >
-              We specialize in Indian & International Taxation, Capital Gains, and Foreign Asset Reporting (FA Schedule). Get accurate computations and hassle-free filing.
+              We specialize in Indian &amp; International Taxation, Capital Gains, and Foreign Asset Reporting (FA Schedule). Get accurate computations and hassle-free filing.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -69,12 +75,14 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col gap-4 min-[400px]:flex-row justify-center lg:justify-start"
             >
-              <Button asChild size="lg" className="bg-ring text-white hover:bg-ring/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-                <Link href="/contact">
-                  Start Filing Now <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-border hover:border-ring/50 transition-all duration-300 hover:-translate-y-0.5">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-md px-6 h-12 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                style={{ backgroundColor: '#C6A85E' }}
+              >
+                Start Filing Now <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+              <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:border-ring/50 transition-all duration-300 hover:-translate-y-0.5 h-12">
                 <Link href="/services">View Services</Link>
               </Button>
             </motion.div>
@@ -124,6 +132,37 @@ export default function Home() {
             </div>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* Worked With Clients From */}
+      <section className="py-16 bg-foreground text-background">
+        <div className="container">
+          <ScrollReveal>
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              <div className="lg:w-1/4 shrink-0">
+                <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                  Worked with<br />clients from
+                </h2>
+              </div>
+              <div className="lg:w-3/4">
+                <div className="grid grid-cols-4 gap-3 sm:gap-4">
+                  {clientLogos.map((name, i) => (
+                    <motion.div
+                      key={name}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05, duration: 0.4 }}
+                      className="flex items-center justify-center rounded-xl bg-background/10 backdrop-blur-sm border border-background/20 px-4 py-5 sm:py-6 hover:bg-background/20 transition-colors cursor-default"
+                    >
+                      <span className="text-sm sm:text-base md:text-lg font-bold tracking-wide text-background/90">{name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* Stats Section */}
@@ -203,9 +242,13 @@ export default function Home() {
                   Ready to simplify your taxes and optimize your wealth? Connect with our experts today.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                  <Button asChild size="lg" className="bg-ring text-white hover:bg-ring/90 font-bold px-8 h-12 border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-                    <Link href="/contact">Book An Appointment</Link>
-                  </Button>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center rounded-md px-8 h-12 text-base font-bold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                    style={{ backgroundColor: '#C6A85E' }}
+                  >
+                    Book An Appointment
+                  </Link>
                   <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-accent h-12 transition-all duration-300 hover:-translate-y-0.5">
                     <Link href="https://wa.me/918380894711" target="_blank">Chat on WhatsApp</Link>
                   </Button>

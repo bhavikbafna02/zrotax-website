@@ -59,9 +59,7 @@ export default function ComplianceGSTPage() {
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                         Let us handle the red tape so you can focus on building your business. Contact us for a comprehensive compliance checkup.
                     </p>
-                    <Button asChild size="lg" className="bg-ring text-white hover:bg-ring/90 font-semibold">
-                        <Link href="/contact">Get Compliant</Link>
-                    </Button>
+                    <Link href="/contact" className="inline-flex items-center justify-center rounded-md px-6 h-11 text-base font-semibold text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Get Compliant</Link>
                 </div>
             </div>
         </div>

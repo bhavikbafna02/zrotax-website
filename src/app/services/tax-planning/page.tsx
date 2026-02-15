@@ -59,9 +59,7 @@ export default function TaxPlanningPage() {
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                         Don't let tax complexities hold your business back. Schedule a consultation with our tax experts today.
                     </p>
-                    <Button asChild size="lg" className="bg-ring text-white hover:bg-ring/90 font-semibold">
-                        <Link href="/contact">Schedule a Consultation</Link>
-                    </Button>
+                    <Link href="/contact" className="inline-flex items-center justify-center rounded-md px-6 h-11 text-base font-semibold text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Schedule a Consultation</Link>
                 </div>
             </div>
         </div>

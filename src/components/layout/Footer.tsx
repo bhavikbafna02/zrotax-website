@@ -10,11 +10,11 @@ export function Footer() {
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:gap-12">
                     {/* Brand & Description */}
                     <div className="space-y-4">
-                        <Link href="/" className="flex items-center gap-4">
-                            <div className="relative h-14 w-14 overflow-hidden rounded-md">
-                                <Image src="/logo.png" alt="Zrotax Logo" fill className="object-cover object-top" style={{ clipPath: 'inset(0 0 30% 0)' }} />
+                        <Link href="/" className="flex items-center gap-3">
+                            <div className="relative h-16 w-16 shrink-0">
+                                <Image src="/logo.png" alt="Zrotax Logo" fill className="object-contain" />
                             </div>
-                            <span className="text-4xl font-bold text-foreground tracking-tight">Zrotax</span>
+                            <span className="text-3xl font-bold text-foreground tracking-tight">Zrotax</span>
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                             We are a new-age tax and financial consultancy firm, simplifying taxes with clarity, compliance, and confidence.

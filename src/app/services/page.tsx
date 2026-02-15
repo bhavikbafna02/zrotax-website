@@ -88,11 +88,13 @@ export default function ServicesPage() {
                                     </div>
                                 </CardContent>
                                 <CardFooter className="pt-6">
-                                    <Button asChild className="w-full h-11 text-base bg-ring text-white hover:bg-ring/90 shadow-md hover:shadow-lg transition-all duration-300">
-                                        <Link href="/contact">
-                                            {service.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                                        </Link>
-                                    </Button>
+                                    <Link
+                                        href="/contact"
+                                        className="w-full h-11 inline-flex items-center justify-center gap-2 rounded-md text-base font-medium text-white shadow-md hover:shadow-lg transition-all duration-300"
+                                        style={{ backgroundColor: '#C6A85E' }}
+                                    >
+                                        {service.cta} <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Link>
                                 </CardFooter>
                             </Card>
                         </HoverCard>
@@ -143,9 +145,13 @@ export default function ServicesPage() {
                             Whether you need tax optimization, GST compliance, or a complete financial overhaul, Zrotax is here to guide you.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                            <Button asChild size="lg" className="bg-ring text-white hover:bg-ring/90 font-bold px-8 h-12 border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-                                <Link href="/contact">Book a Consultation</Link>
-                            </Button>
+                            <Link
+                                href="/contact"
+                                className="inline-flex items-center justify-center rounded-md px-8 h-12 text-base font-bold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                                style={{ backgroundColor: '#C6A85E' }}
+                            >
+                                Book a Consultation
+                            </Link>
                             <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-accent h-12 px-8 transition-all duration-300 hover:-translate-y-0.5">
                                 <Link href="https://wa.me/918380894711" target="_blank">Chat on WhatsApp</Link>
                             </Button>

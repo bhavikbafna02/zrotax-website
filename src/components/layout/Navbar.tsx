@@ -52,11 +52,11 @@ export function Navbar() {
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-24 items-center justify-between">
-                <Link href="/" className="flex items-center gap-3">
-                    <div className="relative h-12 w-12 overflow-hidden rounded-md">
-                        <Image src="/logo.png" alt="Zrotax Logo" fill className="object-cover object-top" style={{ clipPath: 'inset(0 0 30% 0)' }} />
+                <Link href="/" className="flex items-center gap-2">
+                    <div className="relative h-16 w-16 shrink-0">
+                        <Image src="/logo.png" alt="Zrotax Logo" fill className="object-contain" />
                     </div>
-                    <span className="text-4xl font-bold text-foreground tracking-tight">Zrotax</span>
+                    <span className="text-3xl font-bold text-foreground tracking-tight">Zrotax</span>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -117,9 +117,7 @@ export function Navbar() {
                         <Button asChild variant="outline" className="hidden lg:flex">
                             <Link href="/file-itr">File ITR</Link>
                         </Button>
-                        <Button asChild variant="default" className="bg-ring text-white hover:bg-ring/90">
-                            <Link href="/contact">Consult Now</Link>
-                        </Button>
+                        <Link href="/contact" className="inline-flex items-center justify-center rounded-md px-4 h-9 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Consult Now</Link>
                     </div>
                 </div>
 
@@ -163,9 +161,7 @@ export function Navbar() {
                                 <Button asChild variant="outline" className="mt-4 w-full justify-start pl-4 text-lg h-auto py-2 border-none">
                                     <Link href="/file-itr" onClick={() => setIsOpen(false)}>File ITR</Link>
                                 </Button>
-                                <Button asChild className="mt-2 w-full">
-                                    <Link href="/contact" onClick={() => setIsOpen(false)}>Consult Now</Link>
-                                </Button>
+                                <Link href="/contact" onClick={() => setIsOpen(false)} className="mt-2 w-full inline-flex items-center justify-center rounded-md px-4 h-10 text-sm font-medium text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Consult Now</Link>
                             </div>
                         </SheetContent>
                     </Sheet>

@@ -94,7 +94,7 @@ export default function ContactPage() {
 
                     <div className="bg-card p-8 rounded-2xl border border-border space-y-6">
                         <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full bg-ring text-white flex items-center justify-center">
+                            <div className="h-10 w-10 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: '#C6A85E' }}>
                                 <Calendar className="h-5 w-5" />
                             </div>
                             <h3 className="text-xl font-bold text-foreground">Book an Appointment</h3>
@@ -109,9 +109,7 @@ export default function ContactPage() {
                                 </div>
                             ))}
                         </div>
-                        <Button asChild className="w-full bg-ring text-white hover:bg-ring/90">
-                            <Link href="https://wa.me/918380894711" target="_blank">Schedule via WhatsApp</Link>
-                        </Button>
+                        <Link href="https://wa.me/918380894711" target="_blank" className="w-full inline-flex items-center justify-center rounded-md h-10 text-sm font-medium text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Schedule via WhatsApp</Link>
                     </div>
                 </div>
 
@@ -171,7 +169,7 @@ export default function ContactPage() {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" size="lg" className="w-full bg-ring text-white hover:bg-ring/90">Send Message</Button>
+                            <button type="submit" className="w-full inline-flex items-center justify-center rounded-md h-11 px-6 text-base font-medium text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Send Message</button>
                         </form>
                     </Form>
                 </div>

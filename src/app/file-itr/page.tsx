@@ -47,11 +47,13 @@ export default function FileITRPage() {
                     transition={{ duration: 0.6, delay: 0.35 }}
                     className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
                 >
-                    <Button asChild size="lg" className="h-14 px-8 text-lg bg-ring text-white hover:bg-ring/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center">
-                        <Link href="/contact">
-                            Book Appointment <ArrowRight className="ml-2 h-5 w-5" />
-                        </Link>
-                    </Button>
+                    <Link
+                        href="/contact"
+                        className="inline-flex items-center justify-center gap-2 rounded-md h-14 px-8 text-lg font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                        style={{ backgroundColor: '#C6A85E' }}
+                    >
+                        Book Appointment <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
                     <Button asChild variant="outline" size="lg" className="h-14 px-8 text-lg border-border text-foreground hover:bg-accent transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center">
                         <Link href="https://wa.me/918380894711" target="_blank">
                             <MessageSquare className="mr-2 h-5 w-5 text-green-500" /> Connect on WhatsApp
