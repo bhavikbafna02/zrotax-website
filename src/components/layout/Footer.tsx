@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -9,8 +10,11 @@ export function Footer() {
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:gap-12">
                     {/* Brand & Description */}
                     <div className="space-y-4">
-                        <Link href="/" className="flex items-center space-x-2">
-                            <span className="text-2xl font-bold text-primary">Zrotax</span>
+                        <Link href="/" className="flex items-center gap-4">
+                            <div className="relative h-28 w-28 overflow-hidden rounded-md">
+                                <Image src="/logo.png" alt="Zrotax Logo" fill className="object-contain" />
+                            </div>
+                            <span className="text-4xl font-bold text-primary tracking-tight">Zrotax</span>
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                             We are a new-age tax and financial consultancy firm, simplifying taxes with clarity, compliance, and confidence.

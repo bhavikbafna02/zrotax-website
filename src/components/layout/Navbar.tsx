@@ -43,15 +43,20 @@ const components: { title: string; href: string; description: string }[] = [
 
 // Removed duplicate import
 
+import Image from "next/image";
+
 export function Navbar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-16 items-center justify-between">
-                <Link href="/" className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold text-primary">Zrotax</span>
+            <div className="container flex h-24 items-center justify-between">
+                <Link href="/" className="flex items-center gap-3">
+                    <div className="relative h-20 w-20 overflow-hidden rounded-md">
+                        <Image src="/logo.png" alt="Zrotax Logo" fill className="object-contain" />
+                    </div>
+                    <span className="text-4xl font-bold text-primary tracking-tight">Zrotax</span>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -110,7 +115,7 @@ export function Navbar() {
                     <div className="flex items-center gap-4">
                         <ModeToggle />
                         <Button asChild variant="outline" className="hidden lg:flex">
-                            <Link href="/contact">File ITR</Link>
+                            <Link href="/file-itr">File ITR</Link>
                         </Button>
                         <Button asChild variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90">
                             <Link href="/contact">Consult Now</Link>
@@ -156,7 +161,7 @@ export function Navbar() {
                                     <ModeToggle />
                                 </div>
                                 <Button asChild variant="outline" className="mt-4 w-full justify-start pl-4 text-lg h-auto py-2 border-none">
-                                    <Link href="/contact" onClick={() => setIsOpen(false)}>File ITR</Link>
+                                    <Link href="/file-itr" onClick={() => setIsOpen(false)}>File ITR</Link>
                                 </Button>
                                 <Button asChild className="mt-2 w-full">
                                     <Link href="/contact" onClick={() => setIsOpen(false)}>Consult Now</Link>

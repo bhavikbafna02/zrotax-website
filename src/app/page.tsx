@@ -117,17 +117,17 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 bg-muted/30">
         <div className="container">
-          <div className="bg-primary rounded-3xl p-8 md:p-16 text-center space-y-8 relative overflow-hidden text-primary-foreground">
+          <div className="bg-primary dark:bg-background rounded-3xl p-8 md:p-16 text-center space-y-8 relative overflow-hidden text-primary-foreground dark:text-foreground ring-1 ring-border">
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold">Your Financial Goals, Our Passion.</h2>
-              <p className="text-primary-foreground/80 text-lg">
+              <p className="opacity-90 text-lg">
                 Ready to simplify your taxes and optimize your wealth? Connect with our experts today.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button asChild size="lg" className="bg-ring text-primary hover:bg-ring/90 font-bold px-8 h-12">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                <Button asChild size="lg" className="bg-ring text-primary-foreground hover:bg-ring/90 font-bold px-8 h-12 border-none flex items-center justify-center">
                   <Link href="/contact">Book An Appointment</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 h-12">
+                <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/20 dark:border-foreground/20 text-primary-foreground dark:text-foreground hover:bg-primary-foreground/10 dark:hover:bg-foreground/10 h-12 flex items-center justify-center">
                   <Link href="https://wa.me/918380894711" target="_blank">Chat on WhatsApp</Link>
                 </Button>
               </div>

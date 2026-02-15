@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Zrotax - Premium Financial & Tax Advisory",
   description: "Expert Chartered Accountants providing tax planning, business advisory, and compliance services. Trusted by 500+ clients.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({

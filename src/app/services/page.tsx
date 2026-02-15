@@ -146,18 +146,18 @@ export default function ServicesPage() {
             </div>
 
             {/* CTA Section */}
-            <div className="bg-primary text-primary-foreground rounded-2xl p-8 md:p-16 text-center space-y-8 relative overflow-hidden">
+            <div className="bg-primary dark:bg-background text-primary-foreground dark:text-foreground rounded-2xl p-8 md:p-16 text-center space-y-8 relative overflow-hidden ring-1 ring-border">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,94,0.15),transparent_50%)]"></div>
                 <div className="relative z-10 space-y-6">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Ready to Secure Your Financial Future?</h2>
-                    <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
+                    <p className="opacity-90 text-lg max-w-2xl mx-auto">
                         Whether you need tax optimization, GST compliance, or a complete financial overhaul, Zrotax is here to guide you.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                        <Button asChild size="lg" className="bg-ring text-primary hover:bg-ring/90 font-semibold h-12 px-8">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                        <Button asChild size="lg" className="bg-ring text-primary-foreground hover:bg-ring/90 font-bold px-8 h-12 border-none flex items-center justify-center">
                             <Link href="/contact">Book a Consultation</Link>
                         </Button>
-                        <Button asChild variant="outline" size="lg" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 h-12 px-8 hover:text-white bg-transparent">
+                        <Button asChild variant="outline" size="lg" className="border-primary-foreground/20 dark:border-foreground/20 text-primary-foreground dark:text-foreground hover:bg-primary-foreground/10 dark:hover:bg-foreground/10 h-12 px-8 bg-transparent flex items-center justify-center">
                             <Link href="https://wa.me/918380894711" target="_blank">Chat on WhatsApp</Link>
                         </Button>
                     </div>
