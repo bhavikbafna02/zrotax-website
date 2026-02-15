@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, FileText, Shield, Globe, Calculator, BarChart3 } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, FileText, Shield, Globe, BarChart3 } from "lucide-react";
 import { ScrollReveal, StaggerContainer, StaggerItem, ParallaxSection, HoverCard } from "@/components/ui/scroll-animations";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -215,41 +215,8 @@ export default function Home() {
                       </motion.div>
                     ))}
                   </div>
-
-                  {/* Progress bar */}
-                  <div className="mt-5 space-y-2">
-                    <div className="flex justify-between text-xs text-muted-foreground">
-                      <span>FY 2024-25 Goal</span>
-                      <span className="font-semibold text-foreground">85%</span>
-                    </div>
-                    <div className="w-full bg-muted h-2 rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full rounded-full"
-                        style={{ background: 'linear-gradient(90deg, #C6A85E, #E8D5A3)' }}
-                        initial={{ width: "0%" }}
-                        whileInView={{ width: "85%" }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
-                      />
-                    </div>
-                  </div>
                 </div>
               </div>
-
-              {/* Floating badge */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-4 -left-4 px-4 py-2.5 rounded-xl bg-card border border-border shadow-lg flex items-center gap-2"
-              >
-                <div className="h-8 w-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#C6A85E' }}>
-                  <Calculator className="h-4 w-4 text-white" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-foreground">500+</p>
-                  <p className="text-[10px] text-muted-foreground">Active Subscriptions</p>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </motion.div>
