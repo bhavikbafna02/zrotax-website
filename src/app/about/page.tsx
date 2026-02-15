@@ -12,63 +12,30 @@ export default function AboutPage() {
     return (
         <div className="container py-12 md:py-24 space-y-20">
             {/* Hero Section */}
-            <section className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <section className="max-w-4xl mx-auto text-center space-y-8 pt-8 px-4">
                 <motion.div
-                    initial={{ opacity: 0, x: -40 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className="space-y-6"
+                    className="space-y-6 flex flex-col items-center"
                 >
-                    <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary font-medium">
+                    <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary font-medium">
                         About Zrotax
                     </div>
-                    <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-foreground leading-tight">
+                    <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-foreground leading-tight">
                         We Simplify Complex Taxes for Modern Professionals.
                     </h1>
-                    <p className="text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                         We are a new-age tax and financial consultancy firm, trusted by salaried professionals, global employees with RSUs/ESPPs, freelancers, startup founders, and growing businesses.
                         Whether it&apos;s basic tax filing or complex foreign income and equity compensation — we simplify it all with clarity, compliance, and confidence.
                     </p>
-                    <div className="flex flex-col gap-4 min-[400px]:flex-row pt-4">
-                        <Link href="/contact" className="inline-flex items-center justify-center rounded-md px-6 h-11 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" style={{ backgroundColor: '#C6A85E' }}>
+                    <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4 w-full">
+                        <Link href="/contact" className="inline-flex items-center justify-center rounded-md px-8 h-12 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" style={{ backgroundColor: '#C6A85E' }}>
                             Partner With Us
                         </Link>
-                        <Button asChild variant="outline" size="lg" className="border-border transition-all duration-300 hover:-translate-y-0.5">
+                        <Button asChild variant="outline" size="lg" className="h-12 px-8 border-border transition-all duration-300 hover:-translate-y-0.5">
                             <Link href="/services">Explore Services</Link>
                         </Button>
-                    </div>
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative aspect-square lg:aspect-video flex items-center justify-center p-8"
-                >
-                    {/* Background Cards for Depth */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-3/4 h-3/4 bg-slate-800/20 rounded-3xl transform -rotate-6 translate-y-4 blur-sm" />
-                        <div className="absolute w-3/4 h-3/4 bg-slate-800/20 rounded-3xl transform rotate-6 translate-y-4 blur-sm" />
-                    </div>
-
-                    {/* Main Card */}
-                    <div className="relative z-10 bg-[#0B1120] p-10 rounded-3xl shadow-2xl border border-slate-800 text-center w-full max-w-sm space-y-6">
-                        {/* Glow effect */}
-                        <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
-                        <div className="space-y-2">
-                            <h3 className="text-6xl font-bold text-white tracking-tight">3+</h3>
-                            <p className="text-lg text-slate-400 font-medium tracking-wide">Cities Presence</p>
-                        </div>
-
-                        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
-
-                        <div className="flex items-center justify-center gap-4 text-sm font-medium text-slate-300">
-                            <span>Mumbai</span>
-                            <div className="h-4 w-px bg-slate-700" />
-                            <span>Bangalore</span>
-                            <div className="h-4 w-px bg-slate-700" />
-                            <span>Akola</span>
-                        </div>
                     </div>
                 </motion.div>
             </section>
