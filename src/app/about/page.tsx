@@ -140,7 +140,7 @@ export default function AboutPage() {
                     </div>
                 </ScrollReveal>
 
-                <StaggerContainer className="grid gap-8 md:grid-cols-3 justify-center" staggerDelay={0.2}>
+                <StaggerContainer className="grid gap-8 md:grid-cols-3 justify-center max-w-6xl mx-auto" staggerDelay={0.2}>
                     {[
                         { name: "CA Pranay Bafna", role: "Founder", desc: "Expert in RSU/ESPP & International Taxation", image: "/team/pranay.png" },
                         { name: "CA Neha Bafna", role: "Co-Founder", desc: "Specialist in Corporate Compliance & GST", image: "/team/neha.png" },
@@ -148,20 +148,20 @@ export default function AboutPage() {
                     ].map((member, i) => (
                         <StaggerItem key={i}>
                             <HoverCard>
-                                <div className="group relative overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow-sm hover:shadow-xl transition-all duration-300">
-                                    <div className="aspect-[4/5] relative overflow-hidden bg-muted/50 group-hover:bg-muted/70 transition-colors">
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                                <div className="group h-full bg-zinc-900 border border-zinc-800 p-6 flex flex-col gap-6 transition-colors duration-300 hover:bg-zinc-800/80">
+                                    <div className="relative w-full h-80 overflow-hidden bg-zinc-800">
                                         <Image
                                             src={member.image}
                                             alt={member.name}
                                             fill
-                                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                            priority
+                                            className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                                         />
                                     </div>
-                                    <div className="p-6 text-center space-y-2 relative z-20 bg-card -mt-2 mx-4 rounded-xl shadow-lg border border-border/50">
-                                        <h3 className="font-bold text-xl text-foreground">{member.name}</h3>
-                                        <p className="text-sm font-medium text-ring uppercase tracking-wider">{member.role}</p>
-                                        <p className="text-sm text-muted-foreground pt-2">{member.desc}</p>
+                                    <div className="space-y-1 text-left">
+                                        <p className="text-xs font-medium text-zinc-400 uppercase tracking-widest">{member.role}</p>
+                                        <h3 className="font-bold text-lg text-white uppercase tracking-wide">{member.name}</h3>
+                                        <p className="text-sm text-zinc-400 pt-1 line-clamp-2">{member.desc}</p>
                                     </div>
                                 </div>
                             </HoverCard>
