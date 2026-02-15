@@ -56,7 +56,7 @@ export function Navbar() {
                     <div className="relative h-20 w-20 overflow-hidden rounded-md">
                         <Image src="/logo.png" alt="Zrotax Logo" fill className="object-contain" />
                     </div>
-                    <span className="text-4xl font-bold text-primary tracking-tight">Zrotax</span>
+                    <span className="text-4xl font-bold text-foreground tracking-tight">Zrotax</span>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -117,7 +117,7 @@ export function Navbar() {
                         <Button asChild variant="outline" className="hidden lg:flex">
                             <Link href="/file-itr">File ITR</Link>
                         </Button>
-                        <Button asChild variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                        <Button asChild variant="default" className="bg-ring text-white hover:bg-ring/90">
                             <Link href="/contact">Consult Now</Link>
                         </Button>
                     </div>

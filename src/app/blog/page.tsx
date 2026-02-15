@@ -38,7 +38,7 @@ export default function BlogPage() {
     return (
         <div className="container py-12 md:py-24 space-y-12">
             <div className="text-center max-w-3xl mx-auto space-y-4">
-                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-primary">Financial Insights</h1>
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-foreground">Financial Insights</h1>
                 <p className="text-xl text-muted-foreground">
                     Expert analysis, latest updates, and practical advice to help you manage your finances better.
                 </p>
@@ -52,7 +52,7 @@ export default function BlogPage() {
                                 <span className="text-sm text-ring font-medium">{post.category}</span>
                                 <span className="text-sm text-muted-foreground">{post.date}</span>
                             </div>
-                            <CardTitle className="text-2xl text-primary hover:text-primary/80 transition-colors">
+                            <CardTitle className="text-2xl text-foreground hover:text-ring transition-colors">
                                 <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                             </CardTitle>
                         </CardHeader>
@@ -62,7 +62,7 @@ export default function BlogPage() {
                             </CardDescription>
                         </CardContent>
                         <CardFooter>
-                            <Button asChild variant="link" className="px-0 text-primary hover:text-ring">
+                            <Button asChild variant="link" className="px-0 text-ring hover:text-ring/80">
                                 <Link href={`/blog/${post.slug}`}>
                                     Read Article <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
@@ -73,7 +73,7 @@ export default function BlogPage() {
             </div>
 
             <div className="flex justify-center mt-8">
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">Load More Articles</Button>
+                <Button variant="outline" className="border-border text-foreground hover:bg-ring hover:text-white">Load More Articles</Button>
             </div>
         </div>
     );

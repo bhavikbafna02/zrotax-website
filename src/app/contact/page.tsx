@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "sonner" // Assuming sonner is installed or handle alert
+import { toast } from "sonner"
 import { Phone, Mail, MapPin, Calendar, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 
@@ -35,7 +35,6 @@ const formSchema = z.object({
 })
 
 export default function ContactPage() {
-    // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -46,9 +45,7 @@ export default function ContactPage() {
         },
     })
 
-    // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        // Ideally call API
         console.log(values)
         alert("Message sent! We will get back to you soon.")
         form.reset()
@@ -58,7 +55,7 @@ export default function ContactPage() {
         <div className="container py-12 md:py-24 space-y-20">
             {/* Header */}
             <div className="text-center max-w-2xl mx-auto space-y-4">
-                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-primary">Get in Touch</h1>
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-foreground">Get in Touch</h1>
                 <p className="text-xl text-muted-foreground">
                     Ready to simplify your taxes? Reach out to us for expert consultation.
                 </p>
@@ -68,10 +65,10 @@ export default function ContactPage() {
                 {/* Contact Info */}
                 <div className="space-y-8">
                     <div className="space-y-6">
-                        <h2 className="text-2xl font-semibold text-primary">Contact Information</h2>
+                        <h2 className="text-2xl font-semibold text-foreground">Contact Information</h2>
                         <div className="space-y-4 text-muted-foreground">
                             <div className="flex items-start gap-4">
-                                <MapPin className="h-6 w-6 text-primary mt-1" />
+                                <MapPin className="h-6 w-6 text-ring mt-1" />
                                 <div>
                                     <h3 className="font-medium text-foreground">Our Office</h3>
                                     <p>Guruganesh Residency, Kirti Nagar,<br />Akola 444001, Maharashtra, India</p>
@@ -79,14 +76,14 @@ export default function ContactPage() {
                                 </div>
                             </div>
                             <div className="flex items-center gap-4">
-                                <Phone className="h-6 w-6 text-primary" />
+                                <Phone className="h-6 w-6 text-ring" />
                                 <div>
                                     <h3 className="font-medium text-foreground">Phone</h3>
                                     <p>+91 8380894711</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-4">
-                                <Mail className="h-6 w-6 text-primary" />
+                                <Mail className="h-6 w-6 text-ring" />
                                 <div>
                                     <h3 className="font-medium text-foreground">Email</h3>
                                     <p>hi.zrotax@gmail.com</p>
@@ -95,31 +92,31 @@ export default function ContactPage() {
                         </div>
                     </div>
 
-                    <div className="bg-muted/40 p-8 rounded-2xl border space-y-6">
+                    <div className="bg-card p-8 rounded-2xl border border-border space-y-6">
                         <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+                            <div className="h-10 w-10 rounded-full bg-ring text-white flex items-center justify-center">
                                 <Calendar className="h-5 w-5" />
                             </div>
-                            <h3 className="text-xl font-bold text-primary">Book an Appointment</h3>
+                            <h3 className="text-xl font-bold text-foreground">Book an Appointment</h3>
                         </div>
                         <p className="text-muted-foreground">
                             Schedule a 1-on-1 consultation with our tax experts to discuss your specific needs.
                         </p>
                         <div className="space-y-3">
                             {["Detailed Tax Planning", "RSU/ESPP Consultation", "ITR Filing Assistance"].map((item, i) => (
-                                <div key={i} className="flex items-center gap-2 text-sm font-medium text-primary/80">
+                                <div key={i} className="flex items-center gap-2 text-sm font-medium text-foreground/80">
                                     <CheckCircle2 className="h-4 w-4 text-ring" /> {item}
                                 </div>
                             ))}
                         </div>
-                        <Button asChild className="w-full bg-primary hover:bg-primary/90">
+                        <Button asChild className="w-full bg-ring text-white hover:bg-ring/90">
                             <Link href="https://wa.me/918380894711" target="_blank">Schedule via WhatsApp</Link>
                         </Button>
                     </div>
                 </div>
 
                 {/* Form */}
-                <div className="bg-card border rounded-2xl p-8 shadow-sm">
+                <div className="bg-card border border-border rounded-2xl p-8 shadow-sm">
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                             <FormField
@@ -174,7 +171,7 @@ export default function ContactPage() {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" size="lg" className="w-full">Send Message</Button>
+                            <Button type="submit" size="lg" className="w-full bg-ring text-white hover:bg-ring/90">Send Message</Button>
                         </form>
                     </Form>
                 </div>
