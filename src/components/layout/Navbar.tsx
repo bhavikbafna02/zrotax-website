@@ -16,24 +16,32 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const components: { title: string; href: string; description: string }[] = [
     {
+        title: "Financial Planning",
+        href: "/services",
+        description: "Comprehensive financial goal setting, budgeting, and investment strategies.",
+    },
+    {
         title: "Tax Planning",
         href: "/services/tax-planning",
-        description: "Strategic tax planning to minimize liability and ensure compliance.",
+        description: "Strategic tax optimization to minimize liability and ensure compliance.",
     },
     {
-        title: "Business Advisory",
-        href: "/services/business-advisory",
-        description: "Expert advice to help your business grow and navigate challenges.",
-    },
-    {
-        title: "Compliance & GST",
+        title: "GST (Export of Services)",
         href: "/services/compliance-gst",
-        description: "Comprehensive GST filing and regulatory compliance services.",
+        description: "Specialized GST compliance for freelancers and consultants exporting services.",
+    },
+    {
+        title: "HUF Planning",
+        href: "/services",
+        description: "Hindu Undivided Family formation and tax benefit management.",
     },
 ];
+
+// Removed duplicate import
 
 export function Navbar() {
     const pathname = usePathname();
@@ -100,6 +108,10 @@ export function Navbar() {
                         </NavigationMenuList>
                     </NavigationMenu>
                     <div className="flex items-center gap-4">
+                        <ModeToggle />
+                        <Button asChild variant="outline" className="hidden lg:flex">
+                            <Link href="/contact">File ITR</Link>
+                        </Button>
                         <Button asChild variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90">
                             <Link href="/contact">Consult Now</Link>
                         </Button>
@@ -139,7 +151,14 @@ export function Navbar() {
                                 <Link href="/contact" className="text-lg font-semibold" onClick={() => setIsOpen(false)}>
                                     Contact
                                 </Link>
-                                <Button asChild className="mt-4">
+                                <div className="flex items-center justify-between mt-4">
+                                    <span className="text-lg font-semibold">Theme</span>
+                                    <ModeToggle />
+                                </div>
+                                <Button asChild variant="outline" className="mt-4 w-full justify-start pl-4 text-lg h-auto py-2 border-none">
+                                    <Link href="/contact" onClick={() => setIsOpen(false)}>File ITR</Link>
+                                </Button>
+                                <Button asChild className="mt-2 w-full">
                                     <Link href="/contact" onClick={() => setIsOpen(false)}>Consult Now</Link>
                                 </Button>
                             </div>

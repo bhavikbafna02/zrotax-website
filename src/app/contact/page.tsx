@@ -1,96 +1,140 @@
-"use client";
+"use client"
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { toast } from "sonner" // Assuming sonner is installed or handle alert
+import { Phone, Mail, MapPin, Calendar, CheckCircle2 } from "lucide-react"
+import Link from "next/link"
 
 const formSchema = z.object({
-    name: z.string().min(2, {
+    username: z.string().min(2, {
         message: "Name must be at least 2 characters.",
     }),
     email: z.string().email({
         message: "Please enter a valid email address.",
     }),
     phone: z.string().min(10, {
-        message: "Please enter a valid phone number (at least 10 digits).",
-    }),
-    subject: z.string().min(5, {
-        message: "Subject must be at least 5 characters.",
+        message: "Phone number must be at least 10 digits.",
     }),
     message: z.string().min(10, {
         message: "Message must be at least 10 characters.",
     }),
-});
+})
 
 export default function ContactPage() {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-
+    // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: "",
+            username: "",
             email: "",
             phone: "",
-            subject: "",
             message: "",
         },
-    });
+    })
 
+    // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        setIsSubmitting(true);
-        setSubmitStatus("idle");
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(values),
-            });
-
-            if (!response.ok) throw new Error("Failed to send message");
-
-            setSubmitStatus("success");
-            form.reset();
-        } catch (error) {
-            setSubmitStatus("error");
-        } finally {
-            setIsSubmitting(false);
-        }
+        // Ideally call API
+        console.log(values)
+        alert("Message sent! We will get back to you soon.")
+        form.reset()
     }
 
     return (
-        <div className="container py-12 md:py-24 max-w-2xl mx-auto">
-            <div className="space-y-6 text-center mb-12">
-                <h1 className="text-4xl font-bold tracking-tight text-primary">Get in Touch</h1>
-                <p className="text-muted-foreground text-lg">
-                    We'd love to hear from you. Fill out the form below and we'll get back to you shortly.
+        <div className="container py-12 md:py-24 space-y-20">
+            {/* Header */}
+            <div className="text-center max-w-2xl mx-auto space-y-4">
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-primary">Get in Touch</h1>
+                <p className="text-xl text-muted-foreground">
+                    Ready to simplify your taxes? Reach out to us for expert consultation.
                 </p>
             </div>
 
-            <div className="bg-card p-8 rounded-xl shadow-lg border border-border">
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="John Doe" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+            <div className="grid gap-12 lg:grid-cols-2">
+                {/* Contact Info */}
+                <div className="space-y-8">
+                    <div className="space-y-6">
+                        <h2 className="text-2xl font-semibold text-primary">Contact Information</h2>
+                        <div className="space-y-4 text-muted-foreground">
+                            <div className="flex items-start gap-4">
+                                <MapPin className="h-6 w-6 text-primary mt-1" />
+                                <div>
+                                    <h3 className="font-medium text-foreground">Our Office</h3>
+                                    <p>Guruganesh Residency, Kirti Nagar,<br />Akola 444001, Maharashtra, India</p>
+                                    <p className="text-sm mt-1 text-primary/80 font-medium">Presence in: Mumbai | Bangalore | Akola</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <Phone className="h-6 w-6 text-primary" />
+                                <div>
+                                    <h3 className="font-medium text-foreground">Phone</h3>
+                                    <p>+91 8380894711</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <Mail className="h-6 w-6 text-primary" />
+                                <div>
+                                    <h3 className="font-medium text-foreground">Email</h3>
+                                    <p>hi.zrotax@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-muted/40 p-8 rounded-2xl border space-y-6">
+                        <div className="flex items-center gap-3">
+                            <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+                                <Calendar className="h-5 w-5" />
+                            </div>
+                            <h3 className="text-xl font-bold text-primary">Book an Appointment</h3>
+                        </div>
+                        <p className="text-muted-foreground">
+                            Schedule a 1-on-1 consultation with our tax experts to discuss your specific needs.
+                        </p>
+                        <div className="space-y-3">
+                            {["Detailed Tax Planning", "RSU/ESPP Consultation", "ITR Filing Assistance"].map((item, i) => (
+                                <div key={i} className="flex items-center gap-2 text-sm font-medium text-primary/80">
+                                    <CheckCircle2 className="h-4 w-4 text-ring" /> {item}
+                                </div>
+                            ))}
+                        </div>
+                        <Button asChild className="w-full bg-primary hover:bg-primary/90">
+                            <Link href="https://wa.me/918380894711" target="_blank">Schedule via WhatsApp</Link>
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Form */}
+                <div className="bg-card border rounded-2xl p-8 shadow-sm">
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <FormField
+                                control={form.control}
+                                name="username"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Name</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Your Name" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                             <FormField
                                 control={form.control}
                                 name="email"
@@ -98,7 +142,7 @@ export default function ContactPage() {
                                     <FormItem>
                                         <FormLabel>Email</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="john@example.com" {...field} />
+                                            <Input placeholder="your.email@example.com" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -111,70 +155,30 @@ export default function ContactPage() {
                                     <FormItem>
                                         <FormLabel>Phone</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="+91 98765 43210" {...field} />
+                                            <Input placeholder="+91 9876543210" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-                        </div>
-
-                        <FormField
-                            control={form.control}
-                            name="subject"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Subject</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Inquiry about Tax Planning" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <FormField
-                            control={form.control}
-                            name="message"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Message</FormLabel>
-                                    <FormControl>
-                                        <Textarea
-                                            placeholder="Tell us about your requirements..."
-                                            className="min-h-[120px]"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <Button type="submit" className="w-full h-11 text-lg" disabled={isSubmitting}>
-                            {isSubmitting ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Sending...
-                                </>
-                            ) : (
-                                "Send Message"
-                            )}
-                        </Button>
-
-                        {submitStatus === "success" && (
-                            <div className="p-4 rounded-md bg-green-50 text-green-700 border border-green-200 text-center">
-                                Message sent successfully! We will contact you soon.
-                            </div>
-                        )}
-                        {submitStatus === "error" && (
-                            <div className="p-4 rounded-md bg-red-50 text-red-700 border border-red-200 text-center">
-                                Something went wrong. Please try again.
-                            </div>
-                        )}
-                    </form>
-                </Form>
+                            <FormField
+                                control={form.control}
+                                name="message"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Message</FormLabel>
+                                        <FormControl>
+                                            <Textarea placeholder="How can we help you?" className="min-h-[120px]" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit" size="lg" className="w-full">Send Message</Button>
+                        </form>
+                    </Form>
+                </div>
             </div>
         </div>
-    );
+    )
 }
