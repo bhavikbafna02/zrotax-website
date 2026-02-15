@@ -209,11 +209,12 @@ export function Navbar() {
                                             </Link>
                                         </div>
                                     )}
-                                    <Button asChild variant="outline" className="mt-4 w-full justify-start pl-4 text-lg h-auto py-2 border-none">
-                                        <Link href="/file-itr" onClick={() => setIsOpen(false)}>File ITR</Link>
-                                    </Button>
-                                    <Link href="/contact" onClick={() => setIsOpen(false)} className="mt-2 w-full inline-flex items-center justify-center rounded-md px-4 h-10 text-sm font-medium text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Consult Now</Link>
                                 </div>
+                                <Button asChild variant="outline" className="mt-4 w-full justify-start pl-4 text-lg h-auto py-2 border-none">
+                                    <Link href="/file-itr" onClick={() => setIsOpen(false)}>File ITR</Link>
+                                </Button>
+                                <Link href="/contact" onClick={() => setIsOpen(false)} className="mt-2 w-full inline-flex items-center justify-center rounded-md px-4 h-10 text-sm font-medium text-white transition-all hover:opacity-90" style={{ backgroundColor: '#C6A85E' }}>Consult Now</Link>
+                            </div>
                         </SheetContent>
                     </Sheet>
                 </div>
