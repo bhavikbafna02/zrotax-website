@@ -53,8 +53,13 @@ export function Navbar() {
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-24 items-center justify-between">
                 <Link href="/" className="flex items-center gap-2">
-                    <div className="relative h-16 w-16 shrink-0">
-                        <Image src="/logo.png" alt="Zrotax Logo" fill className="object-contain" />
+                    <div className="relative h-20 w-40 shrink-0">
+                        <Image
+                            src="/logo.png"
+                            alt="Zrotax Logo"
+                            fill
+                            className="object-contain brightness-0 dark:brightness-100 transition-all duration-300"
+                        />
                     </div>
                     <span className="text-3xl font-bold text-foreground tracking-tight">Zrotax</span>
                 </Link>
