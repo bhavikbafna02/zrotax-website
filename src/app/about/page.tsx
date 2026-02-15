@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { Lock, Award, ShieldCheck, Target, Lightbulb } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollReveal, StaggerContainer, StaggerItem, ParallaxSection, HoverCard } from "@/components/ui/scroll-animations";
 import { motion } from "framer-motion";
 
@@ -142,21 +142,23 @@ export default function AboutPage() {
 
                 <StaggerContainer className="grid gap-8 md:grid-cols-3 justify-center" staggerDelay={0.2}>
                     {[
-                        { name: "CA Pranay Bafna", role: "Founder", desc: "Expert in RSU/ESPP & International Taxation" },
-                        { name: "CA Neha Bafna", role: "Co-Founder", desc: "Specialist in Corporate Compliance & GST" },
-                        { name: "Bhavik Bafna", role: "CTO", desc: "Tech Innovation & Platform Security" }
+                        { name: "CA Pranay Bafna", role: "Founder", desc: "Expert in RSU/ESPP & International Taxation", image: "/team/pranay.jpg" },
+                        { name: "CA Neha Bafna", role: "Co-Founder", desc: "Specialist in Corporate Compliance & GST", image: "/team/neha.jpg" },
+                        { name: "Bhavik Bafna", role: "CTO", desc: "Tech Innovation & Platform Security", image: "/team/bhavik.jpg" }
                     ].map((member, i) => (
                         <StaggerItem key={i}>
                             <HoverCard>
                                 <div className="group relative overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow-sm hover:shadow-xl transition-all duration-300">
-                                    <div className="aspect-[4/3] bg-muted/50 flex items-center justify-center group-hover:bg-muted/70 transition-colors">
-                                        <Avatar className="h-32 w-32">
-                                            <AvatarFallback className="text-3xl font-bold bg-primary/10 text-primary">
-                                                {member.name.split(' ').map(n => n[0]).join('')}
-                                            </AvatarFallback>
-                                        </Avatar>
+                                    <div className="aspect-[4/5] relative overflow-hidden bg-muted/50 group-hover:bg-muted/70 transition-colors">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                                        <Image
+                                            src={member.image}
+                                            alt={member.name}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                        />
                                     </div>
-                                    <div className="p-6 text-center space-y-2">
+                                    <div className="p-6 text-center space-y-2 relative z-20 bg-card -mt-2 mx-4 rounded-xl shadow-lg border border-border/50">
                                         <h3 className="font-bold text-xl text-foreground">{member.name}</h3>
                                         <p className="text-sm font-medium text-ring uppercase tracking-wider">{member.role}</p>
                                         <p className="text-sm text-muted-foreground pt-2">{member.desc}</p>
