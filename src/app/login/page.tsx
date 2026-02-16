@@ -2,41 +2,38 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useFormStatus } from 'react-dom'
-import { useFormState } from 'react-dom'
-import { login } from '@/app/auth/actions'
-import { ArrowLeft, Loader2 } from 'lucide-react'
-import { toast } from 'sonner'
-import { useEffect } from 'react'
-
-const initialState = {
-    message: '',
-    errors: undefined,
-}
-
-function SubmitButton() {
-    const { pending } = useFormStatus()
-    return (
-        <button
-            type="submit"
-            disabled={pending}
-            style={{ backgroundColor: '#C6A85E' }}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#C6A85E] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-        >
-            {pending ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Sign in'}
-        </button>
-    )
-}
+import { ArrowLeft } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import { GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
+import { PhoneAuthForm } from '@/components/auth/PhoneAuthForm'
+import { EmailAuthForm } from '@/components/auth/EmailAuthForm'
 
 export default function LoginPage() {
-    // @ts-ignore
-    const [state, formAction] = useFormState(login, initialState)
+    const [activeTab, setActiveTab] = useState<'phone' | 'email'>('phone')
+    const supabase = createClient()
+    const router = useRouter()
 
     useEffect(() => {
-        if (state?.message) {
-            toast.error(state.message)
+        // Check session and redirect if logged in
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (session) {
+                router.replace('/dashboard')
+            }
         }
-    }, [state])
+        checkSession()
+
+        // Listen for auth state changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (session) {
+                router.replace('/dashboard')
+            }
+        })
+
+        return () => subscription.unsubscribe()
+    }, [router, supabase])
 
     return (
         <div className="min-h-screen flex flex-col justify-center pt-32 pb-12 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#0B1120] transition-colors duration-200">
@@ -60,99 +57,62 @@ export default function LoginPage() {
                     </div>
                 </div>
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
-                    Sign in to your account
+                    Welcome Back
                 </h2>
                 <p className="mt-2 text-center text-sm text-gray-600 dark:text-slate-400">
-                    Or{' '}
-                    <Link href="/signup" className="font-medium text-[#C6A85E] hover:text-[#B5964B]">
-                        create a new account
-                    </Link>
+                    Login to continue
                 </p>
             </div>
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white dark:bg-[#111827] py-8 px-4 shadow-xl sm:rounded-lg sm:px-10 border border-gray-200 dark:border-slate-800 transition-colors duration-200">
-                    <form action={formAction} className="space-y-6">
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-slate-300">
-                                Email address
-                            </label>
-                            <div className="mt-1">
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    autoComplete="email"
-                                    required
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-slate-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-[#C6A85E] focus:border-[#C6A85E] sm:text-sm bg-white dark:bg-slate-900 text-gray-900 dark:text-white transition-colors"
-                                />
-                            </div>
-                            {state?.errors?.email && (
-                                <p className="mt-2 text-sm text-red-600 dark:text-red-500" id="email-error">
-                                    {state.errors.email[0]}
-                                </p>
-                            )}
-                        </div>
 
-                        <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-slate-300">
-                                Password
-                            </label>
-                            <div className="mt-1">
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    required
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-slate-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-[#C6A85E] focus:border-[#C6A85E] sm:text-sm bg-white dark:bg-slate-900 text-gray-900 dark:text-white transition-colors"
-                                />
-                            </div>
-                            {state?.errors?.password && (
-                                <p className="mt-2 text-sm text-red-600 dark:text-red-500" id="password-error">
-                                    {state.errors.password[0]}
-                                </p>
-                            )}
-                        </div>
+                    {/* Google Login */}
+                    <div className="mb-6">
+                        <GoogleAuthButton />
+                    </div>
 
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <input
-                                    id="remember-me"
-                                    name="remember-me"
-                                    type="checkbox"
-                                    className="h-4 w-4 text-[#C6A85E] focus:ring-[#C6A85E] border-gray-300 dark:border-slate-700 rounded bg-white dark:bg-slate-900 transition-colors"
-                                />
-                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900 dark:text-slate-300">
-                                    Remember me
-                                </label>
-                            </div>
-
-                            <div className="text-sm">
-                                <Link href="/forgot-password" className="font-medium text-[#C6A85E] hover:text-[#B5964B]">
-                                    Forgot your password?
-                                </Link>
-                            </div>
+                    <div className="relative mb-6">
+                        <div className="absolute inset-0 flex items-center">
+                            <div className="w-full border-t border-gray-300 dark:border-slate-700"></div>
                         </div>
-
-                        <div>
-                            <SubmitButton />
+                        <div className="relative flex justify-center text-sm">
+                            <span className="px-2 bg-white dark:bg-[#111827] text-gray-500">Or continue with</span>
                         </div>
-                        {state?.message && (
-                            <div className="rounded-md bg-red-50 dark:bg-red-900/50 p-4 border border-red-200 dark:border-red-900 transition-colors">
-                                <div className="flex">
-                                    <div className="ml-3">
-                                        <h3 className="text-sm font-medium text-red-800 dark:text-red-200">
-                                            Login Error
-                                        </h3>
-                                        <div className="mt-2 text-sm text-red-700 dark:text-red-300">
-                                            <p>{state.message}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+
+                    {/* Tabs */}
+                    <div className="flex space-x-1 rounded-xl bg-gray-100 dark:bg-slate-800 p-1 mb-6">
+                        <button
+                            onClick={() => setActiveTab('phone')}
+                            className={`w-full rounded-lg py-2.5 text-sm font-medium leading-5 transition-all focus:outline-none
+                                ${activeTab === 'phone'
+                                    ? 'bg-white dark:bg-slate-700 text-[#C6A85E] shadow'
+                                    : 'text-gray-600 dark:text-gray-400 hover:bg-white/[0.12] hover:text-[#C6A85E]'
+                                }`}
+                        >
+                            Phone
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('email')}
+                            className={`w-full rounded-lg py-2.5 text-sm font-medium leading-5 transition-all focus:outline-none
+                                ${activeTab === 'email'
+                                    ? 'bg-white dark:bg-slate-700 text-[#C6A85E] shadow'
+                                    : 'text-gray-600 dark:text-gray-400 hover:bg-white/[0.12] hover:text-[#C6A85E]'
+                                }`}
+                        >
+                            Email
+                        </button>
+                    </div>
+
+                    {/* Tab Content */}
+                    <div className="transition-all duration-300 ease-in-out">
+                        {activeTab === 'phone' ? (
+                            <PhoneAuthForm />
+                        ) : (
+                            <EmailAuthForm />
                         )}
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
