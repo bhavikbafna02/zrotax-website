@@ -39,8 +39,8 @@ export default function LoginPage() {
     }, [state])
 
     return (
-        <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#0B1120] transition-colors duration-200">
-            <div className="absolute top-8 left-8">
+        <div className="min-h-screen flex flex-col justify-center pt-32 pb-12 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#0B1120] transition-colors duration-200">
+            <div className="absolute top-28 left-8">
                 <Link href="/" className="flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
                     <ArrowLeft className="h-4 w-4 mr-1" />
                     Back to Home
