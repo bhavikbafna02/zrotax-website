@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useFormStatus } from 'react-dom'
 import { useFormState } from 'react-dom'
 import { login } from '@/app/auth/actions'
@@ -47,9 +48,15 @@ export default function LoginPage() {
             </div>
 
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="flex justify-center">
-                    <div className="h-12 w-12 rounded-lg bg-[#C6A85E] flex items-center justify-center text-white font-bold text-xl">
-                        Z
+                <div className="flex justify-center mb-2">
+                    <div className="relative h-20 w-40">
+                        <Image
+                            src="/logo.png"
+                            alt="Zrotax"
+                            fill
+                            className="object-contain brightness-0 dark:brightness-100"
+                            priority
+                        />
                     </div>
                 </div>
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
