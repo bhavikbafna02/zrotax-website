@@ -15,7 +15,7 @@ const signupSchema = authSchema.extend({
 })
 
 export async function login(prevState: any, formData: FormData) {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const rawData = {
         email: formData.get('email'),
@@ -49,7 +49,7 @@ export async function login(prevState: any, formData: FormData) {
 }
 
 export async function signup(prevState: any, formData: FormData) {
-    const supabase = createClient()
+    const supabase = await createClient()
     const origin = process.env.NEXT_PUBLIC_ORIGIN || 'http://localhost:3000'
 
     const rawData = {
@@ -94,14 +94,14 @@ export async function signup(prevState: any, formData: FormData) {
 }
 
 export async function signOut() {
-    const supabase = createClient()
+    const supabase = await createClient()
     await supabase.auth.signOut()
     revalidatePath('/', 'layout')
     redirect('/login')
 }
 
 export async function forgotPassword(prevState: any, formData: FormData) {
-    const supabase = createClient()
+    const supabase = await createClient()
     const origin = process.env.NEXT_PUBLIC_ORIGIN || 'http://localhost:3000'
 
     const email = formData.get('email') as string
@@ -123,26 +123,26 @@ export async function forgotPassword(prevState: any, formData: FormData) {
 }
 
 export async function updatePassword(prevState: any, formData: FormData) {
-  const supabase = createClient()
-  const password = formData.get('password') as string
-  const confirmPassword = formData.get('confirmPassword') as string
+    const supabase = await createClient()
+    const password = formData.get('password') as string
+    const confirmPassword = formData.get('confirmPassword') as string
 
-  if (password !== confirmPassword) {
-    return {
-      message: 'Passwords do not match',
+    if (password !== confirmPassword) {
+        return {
+            message: 'Passwords do not match',
+        }
     }
-  }
 
-  const { error } = await supabase.auth.updateUser({ password })
+    const { error } = await supabase.auth.updateUser({ password })
 
-  if (error) {
-    return {
-      message: error.message,
+    if (error) {
+        return {
+            message: error.message,
+        }
     }
-  }
 
-  return {
-    success: true,
-    message: 'Password updated successfully',
-  }
+    return {
+        success: true,
+        message: 'Password updated successfully',
+    }
 }
