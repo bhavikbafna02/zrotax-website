@@ -3,15 +3,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
-import { PhoneAuthForm } from '@/components/auth/PhoneAuthForm'
 import { EmailAuthForm } from '@/components/auth/EmailAuthForm'
 
 export default function LoginPage() {
-    const [activeTab, setActiveTab] = useState<'phone' | 'email'>('phone')
     const supabase = createClient()
     const router = useRouter()
 
@@ -72,6 +70,7 @@ export default function LoginPage() {
                         <GoogleAuthButton />
                     </div>
 
+                    {/* Divider */}
                     <div className="relative mb-6">
                         <div className="absolute inset-0 flex items-center">
                             <div className="w-full border-t border-gray-300 dark:border-slate-700"></div>
@@ -81,38 +80,16 @@ export default function LoginPage() {
                         </div>
                     </div>
 
-                    {/* Tabs */}
-                    <div className="flex space-x-1 rounded-xl bg-gray-100 dark:bg-slate-800 p-1 mb-6">
-                        <button
-                            onClick={() => setActiveTab('phone')}
-                            className={`w-full rounded-lg py-2.5 text-sm font-medium leading-5 transition-all focus:outline-none
-                                ${activeTab === 'phone'
-                                    ? 'bg-white dark:bg-slate-700 text-[#C6A85E] shadow'
-                                    : 'text-gray-600 dark:text-gray-400 hover:bg-white/[0.12] hover:text-[#C6A85E]'
-                                }`}
-                        >
-                            Phone
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('email')}
-                            className={`w-full rounded-lg py-2.5 text-sm font-medium leading-5 transition-all focus:outline-none
-                                ${activeTab === 'email'
-                                    ? 'bg-white dark:bg-slate-700 text-[#C6A85E] shadow'
-                                    : 'text-gray-600 dark:text-gray-400 hover:bg-white/[0.12] hover:text-[#C6A85E]'
-                                }`}
-                        >
-                            Email
-                        </button>
-                    </div>
+                    {/* Email Login Form */}
+                    <EmailAuthForm />
 
-                    {/* Tab Content */}
-                    <div className="transition-all duration-300 ease-in-out">
-                        {activeTab === 'phone' ? (
-                            <PhoneAuthForm />
-                        ) : (
-                            <EmailAuthForm />
-                        )}
-                    </div>
+                    {/* Sign Up Link */}
+                    <p className="mt-6 text-center text-sm text-gray-600 dark:text-slate-400">
+                        Don&apos;t have an account?{' '}
+                        <Link href="/signup" className="font-medium text-[#C6A85E] hover:text-[#B5964B] transition-colors">
+                            Sign up
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>
