@@ -46,9 +46,30 @@ export default function ContactPage() {
     })
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
-        alert("Message sent! We will get back to you soon.")
-        form.reset()
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: values.username,
+                    email: values.email,
+                    phone: values.phone,
+                    message: values.message,
+                }),
+            })
+
+            const data = await res.json()
+
+            if (!res.ok) {
+                toast.error(data.error || "Something went wrong. Please try again.")
+                return
+            }
+
+            toast.success("Message sent! We will get back to you soon.")
+            form.reset()
+        } catch (error) {
+            toast.error("Failed to send message. Please check your connection and try again.")
+        }
     }
 
     return (

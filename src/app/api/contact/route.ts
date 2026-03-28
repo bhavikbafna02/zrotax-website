@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { createClient } from "@/lib/supabase/server";
 
 const contactSchema = z.object({
     name: z.string().min(2),
     email: z.string().email(),
     phone: z.string().min(10),
-    subject: z.string().min(5),
     message: z.string().min(10),
 });
 
@@ -21,15 +21,25 @@ export async function POST(request: Request) {
             );
         }
 
-        // data is valid
-        const { name, email, phone, subject, message } = result.data;
+        const { name, email, phone, message } = result.data;
 
-        // Here you would integrate with Resend, Nodemailer, or any email service
-        // For now, we'll simulate a successful email sending
-        console.log("Email to be sent:", { name, email, phone, subject, message });
+        // Save to Supabase
+        const supabase = await createClient();
+        const { error } = await supabase
+            .from("contact_submissions")
+            .insert({ name, email, phone, message });
+
+        if (error) {
+            console.error("Supabase insert error:", error);
+            return NextResponse.json(
+                { error: "Failed to save your message. Please try again." },
+                { status: 500 }
+            );
+        }
 
         return NextResponse.json({ success: true, message: "Message sent successfully!" });
     } catch (error) {
+        console.error("Contact form error:", error);
         return NextResponse.json(
             { error: "Internal Server Error" },
             { status: 500 }
