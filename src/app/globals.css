@@ -280,3 +280,19 @@
   50% { d: path("M 0 5 Q 5 10, 10 5 T 20 5 T 30 5 T 40 5"); }
   100% { d: path("M 0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5"); }
 }
+
+/* ── Marquee animation ── */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee-scroll 28s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
