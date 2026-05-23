@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const GROK_API_KEY = process.env.GROK_API_KEY;
-const GROK_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 const SYSTEM_PROMPT = `You are the official AI assistant for Zrotax (zrotax.com), a premium new-age tax and financial consultancy firm based in India. You are helpful, professional, warm, and concise.
 
@@ -71,7 +70,7 @@ interface ChatMessage {
 
 export async function POST(req: NextRequest) {
     try {
-        if (!GROK_API_KEY) {
+        if (!GEMINI_API_KEY) {
             return NextResponse.json(
                 { error: "Chat service is not configured. Please contact support." },
                 { status: 500 }
@@ -90,28 +89,33 @@ export async function POST(req: NextRequest) {
 
         // Limit conversation history to last 20 messages to save tokens
         const recentMessages = messages.slice(-20);
+        
+        // Map roles to Gemini format
+        const formattedContents = recentMessages.map(msg => ({
+            role: msg.role === "assistant" ? "model" : "user",
+            parts: [{ text: msg.content }]
+        }));
 
-        const response = await fetch(GROK_API_URL, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${GROK_API_KEY}`,
             },
             body: JSON.stringify({
-                model: "llama-3.3-70b-versatile",
-                messages: [
-                    { role: "system", content: SYSTEM_PROMPT },
-                    ...recentMessages,
-                ],
-                temperature: 0.7,
-                max_tokens: 1024,
-                stream: false,
+                systemInstruction: {
+                    parts: [{ text: SYSTEM_PROMPT }]
+                },
+                contents: formattedContents,
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 1024,
+                }
             }),
         });
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error("Grok API error:", response.status, errorText);
+            console.error("Gemini API error:", response.status, errorText);
             return NextResponse.json(
                 { error: "Failed to get response from AI. Please try again." },
                 { status: 502 }
@@ -119,7 +123,7 @@ export async function POST(req: NextRequest) {
         }
 
         const data = await response.json();
-        const reply = data.choices?.[0]?.message?.content || "I'm sorry, I couldn't generate a response. Please try again.";
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I couldn't generate a response. Please try again.";
 
         return NextResponse.json({ reply });
     } catch (error) {
