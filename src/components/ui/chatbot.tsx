@@ -14,7 +14,7 @@ interface Message {
 const INITIAL_MESSAGE: Message = {
     id: "welcome",
     role: "assistant",
-    content: "Hi! 👋 I'm the Zrotax AI assistant. I can help you with questions about our tax filing services, RSU/ESPP taxation, ITR filing, and more. How can I help you today?",
+    content: "Hi! I'm the Zrotax AI assistant. I can help you with questions about our tax filing services, RSU/ESPP taxation, ITR filing, and more. How can I help you today?",
     timestamp: new Date(),
 };
 
